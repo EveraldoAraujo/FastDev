@@ -1,0 +1,22 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net6.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+    <PackageId>FastDev.Infra.Data.EntityFrameworkCore</PackageId>
+    <Description>Set of generic repositorios implementations with CRUD and search operations for EntityFrameworkCore</Description>
+    <Version>0.1.0</Version>
+    <PackageLicenseExpression>MIT</PackageLicenseExpression>
+    <Authors>Everaldo Araujo</Authors>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="6.0.2" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\FastDev.Infra.Data.Core\src\FastDev.Infra.Data.Core.csproj" />
+  </ItemGroup>
+  
+</Project>

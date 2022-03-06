@@ -1,0 +1,23 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net6.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+    <PackageId>FastDev.WebApi</PackageId>
+    <Description>Uses a previous framework to create controllers in the REST standard with all basic http methods (Get, Post, Put, Delete, and Patch), filter return data and handle returns in the form of notifications making front-end development work easier.</Description>
+    <Version>0.1.0</Version>
+    <PackageLicenseExpression>MIT</PackageLicenseExpression>
+    <Authors>Everaldo Araujo</Authors>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore.Mvc" Version="2.2.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\FastDev.Service\src\FastDev.Service.csproj" />
+    <ProjectReference Include="..\..\FastDev.Notifications\src\FastDev.Notifications.csproj" />
+  </ItemGroup>
+
+</Project>

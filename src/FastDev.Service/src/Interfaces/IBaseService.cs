@@ -1,0 +1,15 @@
+﻿using FastDev.Notifications.Interfaces;
+
+namespace FastDev.Service
+{
+    public interface IBaseService<T, TId> where TId : struct
+    {
+        IEnumerable<INotification> Notifications { get; set; }
+        Task<IEnumerable<T>> GetAllAsync();
+        Task<T?> GetByIdAsync(TId id);
+        Task<Boolean> CreateAsync(T obj, bool commitTransaction = true);
+        Task<Boolean> UpdateAsync(T obj, bool commitTransaction = true);
+        Task<Boolean> DeleteAsync(TId id, bool commitTransaction = true);
+        Task<bool> HasByIdAsync(TId id);
+    }
+}

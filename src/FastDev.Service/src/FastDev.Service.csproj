@@ -1,0 +1,19 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\FastDev.Infra.Data\FastDev.Infra.Data.Core\src\FastDev.Infra.Data.Core.csproj" />
+    <ProjectReference Include="..\..\FastDev.Notifications\src\FastDev.Notifications.csproj" />
+  </ItemGroup>
+
+  <PropertyGroup>
+    <TargetFramework>net6.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+    <PackageId>FastDev.Service</PackageId>
+    <Description>An intermediary structure between the application and the data layer with responsibility for controlling the unit of work, in addition to allowing services to be specialized to maintain a coherent project structure where there is segregation of processes in services.</Description>
+    <Version>0.1.0</Version>
+    <PackageLicenseExpression>MIT</PackageLicenseExpression>
+    <Authors>Everaldo Araujo</Authors>
+  </PropertyGroup>
+
+</Project>
