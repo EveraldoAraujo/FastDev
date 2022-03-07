@@ -4,11 +4,26 @@
     <TargetFramework>net6.0</TargetFramework>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
+    
     <PackageId>FastDev.Notifications</PackageId>
+    <Title>FastDev.Notifications</Title>
+    <PackageDescription>Contains one simple notification object with level(entity or process).</PackageDescription>
     <Description>Contains one simple notification object with level(entity or process).</Description>
     <Version>0.1.0</Version>
-    <PackageLicenseExpression>MIT</PackageLicenseExpression>
+    <ReleaseNotes></ReleaseNotes>
     <Authors>Everaldo Araujo</Authors>
+    <Summary>Contains one simple notification object with level(entity or process).</Summary>
+    <RepositoryUrl>https://github.com/EveraldoAraujo/FastDev</RepositoryUrl>
+    <PackageProjectUrl>https://github.com/EveraldoAraujo/FastDev</PackageProjectUrl>
+    <PackageLicenseExpression>MIT</PackageLicenseExpression>
+    <PackageIcon>icon.png</PackageIcon>
+    <icon>https://github.com/EveraldoAraujo/FastDev/tree/main/doc/files/imgs/icon.png</icon>
+    <PackageTags>DDD; Domain; Notifications</PackageTags>
   </PropertyGroup>
+
+  <ItemGroup>
+    <None Include="..\..\..\doc\files\imgs\icon.png" Pack="true" PackagePath="\"/>
+  </ItemGroup>
+
 
 </Project>

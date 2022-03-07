@@ -4,12 +4,26 @@
     <TargetFramework>net6.0</TargetFramework>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
+
     <PackageId>FastDev.Infra.Data.EntityFrameworkCore</PackageId>
-    <Description>Set of generic repositorios implementations with CRUD and search operations for EntityFrameworkCore</Description>
+    <Title>FastDev.Infra.Data.EntityFrameworkCore</Title>
+    <PackageDescription>Generic repositories implementations for EntityFrameworkCore</PackageDescription>
+    <Description>Generic repositories implementations for EntityFrameworkCore</Description>
     <Version>0.1.0</Version>
-    <PackageLicenseExpression>MIT</PackageLicenseExpression>
+    <ReleaseNotes></ReleaseNotes>
     <Authors>Everaldo Araujo</Authors>
+    <Summary>Set of generic repositorios implementations with CRUD and search operations for EntityFrameworkCore</Summary>
+    <RepositoryUrl>https://github.com/EveraldoAraujo/FastDev</RepositoryUrl>
+    <PackageProjectUrl>https://github.com/EveraldoAraujo/FastDev</PackageProjectUrl>
+    <PackageLicenseExpression>MIT</PackageLicenseExpression>
+    <PackageIcon>icon.png</PackageIcon>
+    <icon>https://github.com/EveraldoAraujo/FastDev/tree/main/doc/files/imgs/icon.png</icon>
+    <PackageTags>CRUD; Data; Fast; EF; EFCore; EntityFrameworkCore</PackageTags>
   </PropertyGroup>
+
+  <ItemGroup>
+    <None Include="..\..\..\..\doc\files\imgs\icon.png" Pack="true" PackagePath="\"/>
+  </ItemGroup>
 
   <ItemGroup>
     <PackageReference Include="Microsoft.EntityFrameworkCore" Version="6.0.2" />

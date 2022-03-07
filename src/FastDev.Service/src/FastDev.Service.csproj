@@ -9,11 +9,25 @@
     <TargetFramework>net6.0</TargetFramework>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
+
     <PackageId>FastDev.Service</PackageId>
+    <Title>FastDev.Service</Title>
+    <PackageDescription>An intermediary structure between the application and the data layer with responsibility for controlling the unit of work, in addition to allowing services to be specialized to maintain a coherent project structure where there is segregation of processes in services.</PackageDescription>
     <Description>An intermediary structure between the application and the data layer with responsibility for controlling the unit of work, in addition to allowing services to be specialized to maintain a coherent project structure where there is segregation of processes in services.</Description>
     <Version>0.1.0</Version>
-    <PackageLicenseExpression>MIT</PackageLicenseExpression>
+    <ReleaseNotes></ReleaseNotes>
     <Authors>Everaldo Araujo</Authors>
+    <Summary>An intermediary structure between the application and the data layer with responsibility for controlling the unit of work, in addition to allowing services to be specialized to maintain a coherent project structure where there is segregation of processes in services.</Summary>
+    <RepositoryUrl>https://github.com/EveraldoAraujo/FastDev</RepositoryUrl>
+    <PackageProjectUrl>https://github.com/EveraldoAraujo/FastDev</PackageProjectUrl>
+    <PackageLicenseExpression>MIT</PackageLicenseExpression>
+    <PackageIcon>icon.png</PackageIcon>
+    <icon>https://github.com/EveraldoAraujo/FastDev/tree/main/doc/files/imgs/icon.png</icon>
+    <PackageTags>Service; MVC; CRUD; UoW; UnityOfWork; Data; Fast;</PackageTags>
   </PropertyGroup>
+
+  <ItemGroup>
+    <None Include="..\..\..\doc\files\imgs\icon.png" Pack="true" PackagePath="\"/>
+  </ItemGroup>
 
 </Project>

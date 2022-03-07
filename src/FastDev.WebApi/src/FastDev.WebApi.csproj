@@ -5,18 +5,31 @@
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
     <PackageId>FastDev.WebApi</PackageId>
-    <Description>Uses a previous framework to create controllers in the REST standard with all basic http methods (Get, Post, Put, Delete, and Patch), filter return data and handle returns in the form of notifications making front-end development work easier.</Description>
+    <Title>FastDev.WebApi</Title>
+    <PackageDescription>implementation for generic webapi controllers with GET, POST, PUT, DELETE and PATCH with request field return and business rules support.</PackageDescription>
+    <Description>implementation for generic webapi controllers with GET, POST, PUT, DELETE and PATCH with request field return and business rules support.</Description>
     <Version>0.1.0</Version>
-    <PackageLicenseExpression>MIT</PackageLicenseExpression>
+    <ReleaseNotes></ReleaseNotes>
     <Authors>Everaldo Araujo</Authors>
+    <Summary>Uses a previous framework to create controllers in the REST standard with all basic http methods (Get, Post, Put, Delete, and Patch), filter return data and handle returns in the form of notifications making front-end development work easier.</Summary>
+    <RepositoryUrl>https://github.com/EveraldoAraujo/FastDev</RepositoryUrl>
+    <PackageProjectUrl>https://github.com/EveraldoAraujo/FastDev</PackageProjectUrl>
+    <PackageLicenseExpression>MIT</PackageLicenseExpression>
+    <PackageIcon>icon.png</PackageIcon>
+    <icon>https://github.com/EveraldoAraujo/FastDev/tree/main/doc/files/imgs/icon.png</icon>
+    <PackageTags>API; CRUD; REST; Data; Fast;</PackageTags>
   </PropertyGroup>
+
+  <ItemGroup>
+    <None Include="..\..\..\doc\files\imgs\icon.png" Pack="true" PackagePath="\"/>
+  </ItemGroup>
 
   <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.Mvc" Version="2.2.0" />
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\FastDev.Service\src\FastDev.Service.csproj" />
+      <ProjectReference Include="..\..\FastDev.Service\src\FastDev.Service.csproj" />
     <ProjectReference Include="..\..\FastDev.Notifications\src\FastDev.Notifications.csproj" />
   </ItemGroup>
 
