@@ -4,11 +4,25 @@
     <TargetFramework>net6.0</TargetFramework>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
+
     <PackageId>FastDev.Infra.Data.Core</PackageId>
-    <Description>Set of generic repositorios abstractions with CRUD and search operations</Description>
+    <Title>FastDev.Infra.Data.Core</Title>
+    <PackageDescription>Generic repositories abstractions</PackageDescription>
+    <Description>Generic repositories abstractions</Description>
     <Version>0.1.0</Version>
-    <PackageLicenseExpression>MIT</PackageLicenseExpression>
+    <ReleaseNotes></ReleaseNotes>
     <Authors>Everaldo Araujo</Authors>
+    <Summary>Set of generic repositorios abstractions with CRUD and search operations</Summary>
+    <RepositoryUrl>https://github.com/EveraldoAraujo/FastDev</RepositoryUrl>
+    <PackageProjectUrl>https://github.com/EveraldoAraujo/FastDev</PackageProjectUrl>
+    <PackageLicenseExpression>MIT</PackageLicenseExpression>
+    <PackageIcon>icon.png</PackageIcon>
+    <icon>https://github.com/EveraldoAraujo/FastDev/tree/main/doc/files/imgs/icon.png</icon>
+    <PackageTags>CRUD; Data; Fast</PackageTags>
   </PropertyGroup>
+
+    <ItemGroup>
+    <None Include="..\..\..\..\doc\files\imgs\icon.png" Pack="true" PackagePath="\"/>
+  </ItemGroup>
 
 </Project>
