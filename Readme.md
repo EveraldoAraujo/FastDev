@@ -3,14 +3,14 @@
 É um conjunto de bibliotecas para acelerar o desenvolvimento de contextos orientados a dados, abstraindo toda a estrutura de processos básicos de crud(podendo omitir rotas indesejadas), alem de filtragem de campos no objeto de retorno;
 
 
-### How use it?
+### Como usar isso?
 
 #### Criando as models
 
 Instale o pacote
 
 ```shell
-dotnet add package Fast.Infra.Data
+dotnet add package FastDev.Infra.Data
 ```
 
 Import namespace
@@ -31,6 +31,10 @@ public class User : DataModel<Guid>
 
 ```
 Nota: Se sua aplicação usa Entity Framework não se esqueça de adicionar sua model ao DbContext!
+e adicionar a dependencia para essa estrutura
+```
+```shell
+dotnet add package FastDev.Infra.Data.EntityFrameworkCore
 ```
 
 #### Criando as controllers
@@ -38,7 +42,7 @@ Nota: Se sua aplicação usa Entity Framework não se esqueça de adicionar sua 
 Instale o pacote
 
 ```shell
-dotnet add package Fast.WebApi
+dotnet add package FastDev.WebApi
 ```
 
 Import namespace
@@ -57,11 +61,17 @@ public class UsersController : BaseController<User, Guid>
 
 Calma jovem gafanhoto, não está esquecendo de nada?
 
-#### Hora de registrar as dependencias
+#### Hora de registrar as dependências
+
+Aqui precisamos de mais uma dependência
+
+```shell
+dotnet add package FastDev.Service
+```
 
 ```csharp
 
-using FastDev.Services;
+using FastDev.Service;
 
 ....
 
@@ -95,7 +105,7 @@ builder.Services.AddScoped<DbContext, YourDbContext>();
 // registra a dependencia para controle da unidade de trabalho.
 builder.Services.AddScoped<IUoW, UoW>();
 
-//registra as dependencias genericas de repositórios.
+//registra as dependencias geníricas de repositórios.
 builder.Services.AddTransient(typeof(IRepositoryBase<,>), typeof(FastDev.Infra.Data.EntityFrameworkCore.RepositoryBase<,>));
 ```
 
@@ -106,11 +116,11 @@ Mais estruturas serão adicionadas no futuro. Suporte a mongoDB é uma prioridad
 Caso precise urgente, como usamos um modelo de projeto totalmente desacoplado, você pode dar uma olhada no design do pacote ***FastDev.Infra.Data.EntityFrameworkCore*** e criar sua propria estrutura.
 Não se esqueça de mandar uma pull request.
 
-//Ver mais detalhes sobre o design para um novo pacote de extensão.
+Em breve teremos mais detalhes sobre o design para um novo pacote de extensão.
 
 ### Pronto! Agora pode dar start.
 
-Você terá uma api com essa estrutura, pronta pra uso.
+Você terá uma api com essa estrutura, pronta pra uso. <br/>
 <img src="doc\files\imgs\samplecrudapi.png" style="width:380px; border-radius:5px">
 
 Agora é só testar suas rotas.
@@ -180,12 +190,12 @@ using FastDev.Notifications.Interfaces;
 namespace MyApp;
 public static class MyValidation
 {
-    public static async Task<INotification?> ShouldNotExistWithTheSameName(HttpContext context, User entity)
+    public static async Task<INotification?> ShouldNotExistWithTheSameEmail(HttpContext context, User user)
     {
         var repository = context.RequestServices.GetService<IRepositoryBase<User, Guid>>();
-        if ((await repository!.GetAllAsync()).Any(t => t.Name == entity.Name)) 
+        if ((await repository!.GetAllAsync()).Any(u => u.Email == user.Email)) 
 
-            return new Notification("Já existe um usuário com esse nome");
+            return new Notification("Já existe um usuário com esse email");
 
         return null;
     }
@@ -196,7 +206,7 @@ public static class MyValidation
 Note que o tipo de retorno da função é um objeto do tipo INotification. 
 ```
 ```
-A função recebe o objeto de contexto da requisição dando acesso a todas as features exatamente como se tivesse dentro da controller.
+A função recebe o objeto de contexto da requisição em tempo de execução dando acesso a todas as features exatamente como se estivesse dentro da controller.
 ```
 
 ##### Adicionando a validação ao processo
@@ -205,7 +215,7 @@ using static MyApp.MyValidation;
 
 public UsersController() 
 : base(config => config.CheckRulesOnPost(
-                    ShouldNotExistWithTheSameName,
+                    ShouldNotExistWithTheSameEmail,
                     .....  another rules  .....
                 ))
 ){}
