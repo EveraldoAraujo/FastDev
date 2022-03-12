@@ -2,7 +2,8 @@ using FastDev.Service;
 using FastDev.Infra.Data;
 using FastDev.Infra.Data.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
-using FastDev.DbContexts;
+using FastDev.Sample.DbContexts;
+using FastDev.Sample.Models;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -15,12 +16,20 @@ builder.Services.AddControllers().AddJsonOptions(o=>o.JsonSerializerOptions
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
+builder.Services.ConfigureSwaggerGen(options => options.CustomSchemaIds(x=>x.FullName));
+
+builder.Services.AddDbContext<CategoriesDbContext>(o => o.UseInMemoryDatabase("AppTesteFastDevDB"));
 builder.Services.AddDbContext<AppDbContext>(o => o.UseInMemoryDatabase("AppTesteFastDevDB"));
 
-builder.Services.AddScoped<DbContext, AppDbContext>();
-builder.Services.AddTransient<IUoW, UoW>();
-builder.Services.AddTransient(typeof(IRepositoryBase<,>), typeof(FastDev.Infra.Data.EntityFrameworkCore.RepositoryBase<,>));
-builder.Services.AddTransient(typeof(IServiceBase<,>), typeof(ServiceBase<,>));
+builder.Services.AddTransient(typeof(IUoW<>), typeof(UoW<>));
+
+builder.Services.AddTransient<IRepositoryBase<FastDev.Sample.Models.Category,Guid>, FastDev.Infra.Data.EntityFrameworkCore.RepositoryBase<FastDev.Sample.Models.Category,Guid,AppDbContext>>();
+builder.Services.AddTransient<IRepositoryBase<FastDev.Sample.Models.Product,Guid>, FastDev.Infra.Data.EntityFrameworkCore.RepositoryBase<FastDev.Sample.Models.Product,Guid,AppDbContext>>();
+
+
+builder.Services.AddTransient<IRepositoryBase<FastDev.Sample.Models.Context.Category.Category,Guid>, FastDev.Infra.Data.EntityFrameworkCore.RepositoryBase<FastDev.Sample.Models.Context.Category.Category,Guid,CategoriesDbContext>>();
+
+builder.Services.AddTransient(typeof(IServiceBase<,,>), typeof(ServiceBase<,,>));
 
 var app = builder.Build();
 

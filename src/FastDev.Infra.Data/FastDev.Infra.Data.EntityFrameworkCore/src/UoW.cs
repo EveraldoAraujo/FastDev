@@ -2,11 +2,11 @@
 
 namespace FastDev.Infra.Data.EntityFrameworkCore;
 
-public class UoW : IUoW
+public class UoW<TDbContext> : IUoW<TDbContext> where TDbContext: DbContext
 {
-    private readonly DbContext _context;
+    private readonly TDbContext _context;
 
-    public UoW(DbContext context) => (_context) = (context);
+    public UoW(TDbContext context) => (_context) = (context);
 
     public async Task CommitTransaction()
     {

@@ -1,11 +1,11 @@
 ﻿using Microsoft.EntityFrameworkCore;
 
 namespace FastDev.Infra.Data.EntityFrameworkCore;
-public class RepositoryBase<T, TId> : FastDev.Infra.Data.RepositoryBase<T, TId>, IRepositoryBase<T, TId> where T : class, IDataModel<TId> where TId : struct
+public class RepositoryBase<T, TId, TDbContext> : FastDev.Infra.Data.RepositoryBase<T, TId>, IRepositoryBase<T, TId> where T : class, IDataModel<TId> where TId : struct where TDbContext : DbContext
 {
-    private readonly DbContext _context;
+    private readonly TDbContext _context;
     protected readonly DbSet<T> _dataSet;
-    public RepositoryBase(DbContext context) => (_context, _dataSet) = (context, context.Set<T>());
+    public RepositoryBase(TDbContext context) => (_context, _dataSet) = (context, context.Set<T>());
 
     public override async Task<IEnumerable<T>> GetAllAsync()
     => await _dataSet.Where(e => e.Deleted == false).ToListAsync();

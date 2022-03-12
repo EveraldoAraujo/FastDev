@@ -11,7 +11,7 @@ namespace FastDev.WebApi.Controllers;
 
 [ApiController]
 [Route("[controller]")]
-public class BaseController<T, TId> : ControllerBase where TId : struct
+public class BaseController<T, TId, TDbContext> : ControllerBase where TId : struct where TDbContext: class
 {
 
     public ControllerOptions<T> Options { get; set; }
@@ -24,7 +24,7 @@ public class BaseController<T, TId> : ControllerBase where TId : struct
     }
 
     [HttpGet]
-    public async Task<ActionResult<IEnumerable<T>>> GetAllAsync([FromServices] IServiceBase<T, TId> service, string? getFields)
+    public async Task<ActionResult<IEnumerable<T>>> GetAllAsync([FromServices] IServiceBase<T, TId, TDbContext> service, string? getFields)
     {
         if (!Options._useGetFields && getFields is not null) return NotFound();
         if (!Options._useGet) return NotFound();
@@ -55,7 +55,7 @@ public class BaseController<T, TId> : ControllerBase where TId : struct
 
     [HttpGet]
     [Route("{id}")]
-    public async Task<ActionResult<T?>> GetByIdAsync([FromServices] IServiceBase<T, TId> service, [FromRoute] TId id, string? getFields)
+    public async Task<ActionResult<T?>> GetByIdAsync([FromServices] IServiceBase<T, TId, TDbContext> service, [FromRoute] TId id, string? getFields)
     {
         if (!Options._useGetByIdFields && getFields is not null) return NotFound();
         if (!Options._useGetById) return NotFound();
@@ -75,7 +75,7 @@ public class BaseController<T, TId> : ControllerBase where TId : struct
     }
 
     [HttpPost]
-    public async Task<ActionResult<T>> CreateAsync([FromServices] IServiceBase<T, TId> service, T entity, string? getFields)
+    public async Task<ActionResult<T>> CreateAsync([FromServices] IServiceBase<T, TId, TDbContext> service, T entity, string? getFields)
     {
         if (!Options._usePostReturnFields && getFields is not null) return NotFound();
         if (!Options._usePost) return NotFound();
@@ -89,7 +89,7 @@ public class BaseController<T, TId> : ControllerBase where TId : struct
             if (notifications.Count() > 0) return BadRequest(notifications);
         }
 
-        if (!await service.CreateAsync(entity)) return BadRequest(service.Notifications.Count() > 0 ? service.Notifications : null);
+        if (!await service.CreateAsync(entity)) return BadRequest(service.Notifications.Count() > 0 ? service.Notifications : "null");
 
         var properties = !string.IsNullOrWhiteSpace(getFields) ? getFields.Split(',') : null;
         if (properties is null) return Created(typeof(T).Name, entity);
@@ -106,7 +106,7 @@ public class BaseController<T, TId> : ControllerBase where TId : struct
 
     [HttpPut]
     [Route("{id}")]
-    public async Task<ActionResult<T>> UpdateAsync([FromServices] IServiceBase<T, TId> service, [FromRoute] TId id, T entity)
+    public async Task<ActionResult<T>> UpdateAsync([FromServices] IServiceBase<T, TId, TDbContext> service, [FromRoute] TId id, T entity)
     {
         if (!Options._usePut) return NotFound();
 
@@ -131,7 +131,7 @@ public class BaseController<T, TId> : ControllerBase where TId : struct
 
     [HttpDelete]
     [Route("{id}")]
-    public async Task<ActionResult> DeleteAsync([FromServices] IServiceBase<T, TId> service, [FromRoute] TId id)
+    public async Task<ActionResult> DeleteAsync([FromServices] IServiceBase<T, TId, TDbContext> service, [FromRoute] TId id)
     {
         if (!Options._useDelete) return NotFound();
 
@@ -157,7 +157,7 @@ public class BaseController<T, TId> : ControllerBase where TId : struct
 
     [HttpPatch]
     [Route("{id}")]
-    public async Task<ActionResult> UpdatePartAsync([FromServices] IServiceBase<T, TId> service, [FromRoute] TId id, ExpandoObject update)
+    public async Task<ActionResult> UpdatePartAsync([FromServices] IServiceBase<T, TId, TDbContext> service, [FromRoute] TId id, ExpandoObject update)
     {
         if (!Options._usePatch) return NotFound();
 

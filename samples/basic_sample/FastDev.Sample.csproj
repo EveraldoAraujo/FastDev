@@ -7,15 +7,20 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="FastDev.Infra.Data.EntityFrameworkCore" Version="0.1.0" />
-    <PackageReference Include="FastDev.Service" Version="0.1.0" />
-    <PackageReference Include="FastDev.webapi" Version="0.1.0" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="6.0.2">
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
       <PrivateAssets>all</PrivateAssets>
     </PackageReference>
     <PackageReference Include="Microsoft.EntityFrameworkCore.InMemory" Version="6.0.2" />
     <PackageReference Include="Swashbuckle.AspNetCore" Version="6.2.3" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\src\FastDev.Service\src\FastDev.Service.csproj" />
+    <ProjectReference Include="..\..\src\FastDev.WebApi\src\FastDev.WebApi.csproj" />
+    <ProjectReference Include="..\..\src\FastDev.Notifications\src\FastDev.Notifications.csproj" />
+    <ProjectReference Include="..\..\src\FastDev.Infra.Data\FastDev.Infra.Data.EntityFrameworkCore\src\FastDev.Infra.Data.EntityFrameworkCore.csproj" />
+    <ProjectReference Include="..\..\src\FastDev.Infra.Data\FastDev.Infra.Data.Core\src\FastDev.Infra.Data.Core.csproj" />
   </ItemGroup>
 
 </Project>

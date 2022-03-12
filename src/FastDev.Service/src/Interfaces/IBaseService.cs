@@ -2,7 +2,9 @@
 
 namespace FastDev.Service
 {
-    public interface IBaseService<T, TId> where TId : struct
+    public interface IBaseService<T, TId, TDbContext> 
+    where TId : struct
+    where TDbContext: class
     {
         IEnumerable<INotification> Notifications { get; set; }
         Task<IEnumerable<T>> GetAllAsync();

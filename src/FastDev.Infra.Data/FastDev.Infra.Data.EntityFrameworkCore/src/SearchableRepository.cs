@@ -2,9 +2,9 @@
 using Microsoft.EntityFrameworkCore;
 
 namespace FastDev.Infra.Data.EntityFrameworkCore;
-public class SearchableRepository<T, TId> : RepositoryBase<T, TId>, ISearchableRepository<T, TId> where T : class, IDataModel<TId> where TId : struct
+public class SearchableRepository<T, TId, TDbContext> : RepositoryBase<T, TId, TDbContext>, ISearchableRepository<T, TId> where T : class, IDataModel<TId> where TId : struct where TDbContext : DbContext
 {
-    public SearchableRepository(DbContext context) : base(context)
+    public SearchableRepository(TDbContext context) : base(context)
     {
     }
 

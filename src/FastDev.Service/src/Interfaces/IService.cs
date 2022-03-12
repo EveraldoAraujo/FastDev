@@ -1,7 +1,9 @@
 ﻿
 namespace FastDev.Service
 {
-    public interface IService<T, TId> : ISearchableService<T, TId>, IFilterableService<T, TId> where TId : struct
+    public interface IService<T, TId, TDbContext> : ISearchableService<T, TId, TDbContext>, IFilterableService<T, TId, TDbContext>
+    where TId : struct
+    where TDbContext: class
     {
 
     }

@@ -6,10 +6,10 @@ using FastDev.Notifications.Interfaces;
 using FastDev.Notifications;
 
 namespace FastDev.Service;
-public class BaseService<T, TRep, TId> : IBaseService<T, TId> where TRep : IRepositoryBase<T, TId> where TId : struct
+public class BaseService<T, TRep, TId, TDbContext> : IBaseService<T, TId, TDbContext> where TRep : IRepositoryBase<T, TId> where TId : struct where TDbContext: class
 {
     protected readonly TRep _repository;
-    protected readonly IUoW _uow;
+    protected readonly IUoW<TDbContext> _uow;
 
     public IEnumerable<INotification> Notifications { get; set; }
 
@@ -18,7 +18,7 @@ public class BaseService<T, TRep, TId> : IBaseService<T, TId> where TRep : IRepo
         this.Notifications.ToList().Add(notification);
     }
 
-    public BaseService(TRep repository, IUoW uow)
+    public BaseService(TRep repository, IUoW<TDbContext> uow)
     {
         Notifications = new List<INotification>();
         _repository = repository;
@@ -48,8 +48,9 @@ public class BaseService<T, TRep, TId> : IBaseService<T, TId> where TRep : IRepo
 
             return result;
         }
-        catch (Exception)
+        catch (Exception e)
         {
+            throw e;
             //TODO: Tratar id existente como notificação notificação do tipo application por essa ser uma decisão de aplicação
             return false;
         }
